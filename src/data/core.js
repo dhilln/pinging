@@ -3,7 +3,8 @@ const path = require("path")
 
 const configPaths = {
   setup: path.resolve(__dirname + "../../../config/setup.json"),
-  responses: path.resolve(__dirname + "../../../config/responses.json")
+  responses: path.resolve(__dirname + "../../../config/responses.json"),
+  filters: path.resolve(__dirname + "../../../config/filters.json")
 }
 
 exports.read = type => {

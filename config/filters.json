@@ -1,0 +1,15 @@
+{
+  "cussing": {
+    "delete": false,
+    "warn": true
+  },
+  "link": {
+    "delete": false,
+    "warn": true
+  },
+  "talking": {
+    "ban": true,
+    "delete": false,
+    "warn": true
+  }
+}

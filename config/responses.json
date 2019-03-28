@@ -1,8 +1,15 @@
 {
-  "Success": "Success",
-  "Error": "Error",
-  "NotAdmin": "You are not an admin",
-  "Ping": "Pong",
-  "NoArgument": "Please specify an argument",
-  "InvalidCommand": "Invalid command"
+  "Success": "of course master :sunglasses:",
+  "Error": "i got an error sorry master : (",
+  "NotAdmin": "you're not an admin",
+  "Ping": "pong :sunglasses:",
+  "NoArgument": "pls specify what u want : (",
+  "InvalidCommand": "huh invalid command given",
+
+  "warning": {
+    "Cussing": "don't cuss you jackass",
+    "Talking": "don't talk here",
+    "Links": "don't spam spam links u jackass"
+  }
+
 }
