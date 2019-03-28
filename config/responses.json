@@ -1,0 +1,8 @@
+{
+  "Success": "Success",
+  "Error": "Error",
+  "NotAdmin": "You are not an admin",
+  "Ping": "Pong",
+  "NoArgument": "Please specify an argument",
+  "InvalidCommand": "Invalid command"
+}
