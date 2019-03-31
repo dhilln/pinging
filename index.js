@@ -4,6 +4,7 @@ const client = new Discord.Client()
 const message = require("./src/message")
 const filter = require("./src/filter")
 const data = require("./src/data/core")
+const cli = require("./src/cli")
 
 var config = {}
 
@@ -27,10 +28,22 @@ client.on("ready", () => {
   if (config.activity) client.user.setActivity(config.activity)
 
   console.log("Up and running!")
+
+  cli.listGuilds(client)
 })
 
 client.on("message", msg => {
   message.handleCommand(msg, client)
   filter.handler(msg, client)
-
 })
+
+// Event handlers for listing guilds
+client.on("guildCreate", guild => {
+  console.log(`[EVENT] Just joined ${guild.name}`)
+  cli.listGuilds(client)
+})
+client.on("guildDelete", guild => {
+  console.log(`[EVENT] Just left ${guild.name}`)
+  cli.listGuilds(client)
+})
+client.on("guildUpdate", guild => cli.listGuilds(client))

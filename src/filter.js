@@ -9,8 +9,10 @@ const filters = {
 exports.handler = (discordMessage, client) => {
   const content = discordMessage.content
   responses.list()
+  .catch(() => {})
   .then(responseList => {
     configCore.read("filters")
+    .catch(() => {})
     .then(config => {
       const talkConfig = config.talking
 
@@ -21,14 +23,17 @@ exports.handler = (discordMessage, client) => {
       if (talkConfig.warn || talkConfig.ban || talkConfig.delete) {
         if (talkConfig.ban) {
           discordMessage.member.ban()
+          .catch(() => {})
         }
 
         if (talkConfig.warn) {
           discordMessage.channel.send(responseList.warning["Talking"])
+          .catch(() => {})
         }
 
         if (talkConfig.delete) {
           discordMessage.delete()
+          .catch(() => {})
         }
       }
 
@@ -37,10 +42,12 @@ exports.handler = (discordMessage, client) => {
 
         if (linkConfig.delete) {
           discordMessage.delete()
+          .catch(() => {})
         }
 
         if (linkConfig.warn) {
           discordMessage.channel.send(responseList.warning["Links"])
+          .catch(() => {})
         }
       }
 
@@ -49,10 +56,12 @@ exports.handler = (discordMessage, client) => {
 
         if (cussingConfig.delete) {
           discordMessage.delete()
+          .catch(() => {})
         }
 
         if (cussingConfig.warn) {
           discordMessage.channel.send(responseList.warning["Cussing"])
+          .catch(() => {})
         }
       }
     })
