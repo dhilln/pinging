@@ -32,6 +32,11 @@ client.on("ready", () => {
   cli.listGuilds(client)
 })
 
+client.on("error", error => {
+  console.log("[ERROR] Discord.js client error, outputting to console...")
+  console.log(error)
+})
+
 client.on("message", msg => {
   message.handleCommand(msg, client)
   filter.handler(msg, client)
