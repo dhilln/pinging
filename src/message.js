@@ -5,7 +5,8 @@ const commandModules = {
   maintenance: require("./commands/maintenance"),
   aesthetics: require("./commands/aesthetics"),
   admin: require("./commands/admin"),
-  dialog: require("./commands/dialog")
+  dialog: require("./commands/dialog"),
+  olympics: require("./commands/olympics")
 }
 
 function Command(description, func, admin) {
@@ -23,7 +24,8 @@ const commands = {
   "simon-says": new Command("Repeat what you say", commandModules.dialog.simonSays, true),
   "gif": new Command("Return a random GIF from Giphy", commandModules.dialog.gif, false),
   "user-info": new Command("Return information on user or another user (must be admin to return others info)", commandModules.maintenance.userInfo, false),
-  "coin-flip": new Command("Flip a coin", commandModules.dialog.coinFlip, false)
+  "coin-flip": new Command("Flip a coin", commandModules.dialog.coinFlip, false),
+  "olympics": new Command("Play the Olympics", commandModules.olympics.olympics, true)
 }
 exports.commands = commands
 
