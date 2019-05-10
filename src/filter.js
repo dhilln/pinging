@@ -8,9 +8,9 @@ const filters = {
 
 function handler(discordMessage, client) {
   const content = discordMessage.content
-  responses.list()
+  responses.listWarnings()
   .catch(() => {})
-  .then(responseList => {
+  .then(warningList => {
     configCore.readFilters()
     .catch(() => {})
     .then(config => {
@@ -27,7 +27,7 @@ function handler(discordMessage, client) {
         }
 
         if (talkConfig.warn) {
-          discordMessage.channel.send(responseList.warning["Talking"])
+          discordMessage.channel.send(warningList.talking)
           .catch(() => {})
         }
 
@@ -38,7 +38,7 @@ function handler(discordMessage, client) {
       }
 
       if (filters.link.test(content)) {
-        const linkConfig = config.link
+        const linkConfig = config["discord-link"]
 
         if (linkConfig.delete) {
           discordMessage.delete()
@@ -46,7 +46,7 @@ function handler(discordMessage, client) {
         }
 
         if (linkConfig.warn) {
-          discordMessage.channel.send(responseList.warning["Links"])
+          discordMessage.channel.send(warningList["discord-links"])
           .catch(() => {})
         }
       }
@@ -60,7 +60,7 @@ function handler(discordMessage, client) {
         }
 
         if (cussingConfig.warn) {
-          discordMessage.channel.send(responseList.warning["Cussing"])
+          discordMessage.channel.send(warningList.cussing)
           .catch(() => {})
         }
       }

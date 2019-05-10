@@ -28,14 +28,14 @@ const commands = {
 }
 exports.commands = commands
 
-responses.list()
+responses.listMaintenance()
 .then(responseList => {
   function handleCommand(msg, client) {
     if (msg.content.slice(0, 1) == "*") {
       const commandText = msg.content.split(" ")[0].slice(1)
 
       if (!Object.keys(commands).includes(commandText)) {
-        msg.reply(responseList["InvalidCommand"])
+        msg.reply(responseList["invalid-command"])
         return
       }
 
@@ -45,7 +45,7 @@ responses.list()
       admin.check(msg.author.id)
       .then(isAdmin => {
         if (command.admin && !isAdmin) {
-          msg.reply(responseList["NotAdmin"])
+          msg.reply(responseList["not-admin"])
           return
         }
 
