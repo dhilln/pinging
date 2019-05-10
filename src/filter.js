@@ -6,7 +6,7 @@ const filters = {
   link: require("./filters/link")
 }
 
-exports.handler = (discordMessage, client) => {
+function handler(discordMessage, client) {
   const content = discordMessage.content
   responses.list()
   .catch(() => {})
@@ -66,5 +66,5 @@ exports.handler = (discordMessage, client) => {
       }
     })
   })
-
 }
+exports.handler = handler
