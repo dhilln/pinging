@@ -1,6 +1,6 @@
 var configCore = require("./core")
 
-const list = () => {
+function list() {
   return new Promise((resolve, reject) => {
     configCore.read("setup")
     .then(body => {
@@ -16,7 +16,7 @@ const list = () => {
 }
 exports.list = list
 
-exports.add = id => {
+function add(id) {
   return new Promise((resolve, reject) => {
     configCore.read("setup")
     .then(body => {
@@ -34,3 +34,4 @@ exports.add = id => {
     .catch(reject)
   })
 }
+exports.add = add

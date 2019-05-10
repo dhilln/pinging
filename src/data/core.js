@@ -7,14 +7,15 @@ const configPaths = {
   filters: path.resolve(__dirname + "../../../config/filters.json")
 }
 
-exports.read = type => {
-  return new Promise((resolve, reject) => {
-    if (!configPaths[type]) {
-      reject("Invalid config type")
-      return
-    }
+exports.readSetup = () => readPath(configPaths.setup)
+exports.readResponses = () => readPath(configPaths.responses)
+exports.readFilters = () => readPath(configPaths.filters)
 
-    fs.readFile(configPaths[type], "utf8", (err, body) => {
+exports.writeSetup = body => writePath(configPaths.setup, body)
+
+function readPath(path) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, "utf8", (err, body) => {
       if (err) {
         reject(err)
         return
@@ -33,8 +34,9 @@ exports.read = type => {
     })
   })
 }
+exports.readPath = readPath
 
-exports.write = body => {
+function writePath(body) {
   return new Promise((resolve, reject) => {
     try {
       JSON.parse(body)
@@ -51,3 +53,4 @@ exports.write = body => {
     })
   })
 }
+exports.writePath = writePath

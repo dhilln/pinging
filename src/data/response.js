@@ -2,9 +2,9 @@ const configCore = require("./core")
 
 const requriedKeys = ["Success", "Error", "NotAdmin", "Ping", "NoArgument", "InvalidCommand"]
 
-exports.list = () => {
+function list() {
   return new Promise((resolve, reject) => {
-    configCore.read("responses")
+    configCore.readResponses()
     .then(responseList => {
       const responseListKeys = Object.keys(responseList)
       for (key in requriedKeys) {
@@ -19,3 +19,4 @@ exports.list = () => {
     .catch(reject)
   })
 }
+exports.list = list

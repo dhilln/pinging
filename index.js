@@ -1,14 +1,14 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 
-const message = require("./src/message")
+// const message = require("./src/message")
 const filter = require("./src/filter")
 const data = require("./src/data/core")
 const cli = require("./src/cli")
 
 var config = {}
 
-data.read("setup")
+data.readSetup()
 .then(body => {
   if (!body.token) {
     console.log("Invalid config.js, no token")
