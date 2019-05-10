@@ -1,4 +1,4 @@
-exports.olympics = (message) => {
+function olympics(message) {
   message.channel.send("lets play the olympics... :smile: ")
   setTimeout(() => {
     message.channel.send("the first contestnat will be.......")
@@ -13,3 +13,4 @@ exports.olympics = (message) => {
     }, 1000)
   }, 1000)
 }
+exports.olympics = olympics

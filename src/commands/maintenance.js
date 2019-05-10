@@ -1,7 +1,7 @@
 const message = require("../message")
 const admin = require("../data/admin")
 
-exports.help = (msg, client, arg, responseList, isAdmin) => {
+function help(msg, client, arg, responseList, isAdmin) {
   const commands = Object.keys(message.commands).reduce((filtered, commandName) => {
     const command = message.commands[commandName]
     if (command.admin) {
@@ -16,12 +16,14 @@ exports.help = (msg, client, arg, responseList, isAdmin) => {
 
   msg.reply("```" + commands + "```")
 }
+exports.help = help
 
-exports.ping = (msg, client, arg, responseList, isAdmin) => {
+function ping(msg, client, arg, responseList, isAdmin) {
   msg.reply(responseList["Ping"])
 }
+exports.ping = ping
 
-exports.userInfo = (msg, client, arg, responseList, isAdmin) => {
+function userInfo(msg, client, arg, responseList, isAdmin) {
   const mentions = msg.mentions.users.map(item => {
     return item
   })
@@ -44,3 +46,4 @@ exports.userInfo = (msg, client, arg, responseList, isAdmin) => {
     process.exit(1)
   })
 }
+exports.userInfo = userInfo

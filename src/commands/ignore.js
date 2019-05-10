@@ -1,6 +1,6 @@
 const admin = require("../data/admin")
 
-exports.add = (msg, client, arg, responseList, isAdmin) => {
+function add(msg, client, arg, responseList, isAdmin) {
   const mentions = msg.mentions.users.map(item => {
     return item
   })
@@ -26,3 +26,4 @@ exports.add = (msg, client, arg, responseList, isAdmin) => {
     .catch(err => console.log(err))
   })
 }
+exports.add = add

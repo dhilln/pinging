@@ -2,7 +2,7 @@ var configCore = require("./core")
 
 function list() {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.ignoring) {
         reject("Invalid config.js, no ignoring")
@@ -18,7 +18,7 @@ exports.list = list
 
 function add(id) {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.ignoring) {
         reject("Invalid config.js, no ignoring")

@@ -11,7 +11,7 @@ exports.handler = (discordMessage, client) => {
   responses.list()
   .catch(() => {})
   .then(responseList => {
-    configCore.read("filters")
+    configCore.readFilters()
     .catch(() => {})
     .then(config => {
       const talkConfig = config.talking

@@ -1,7 +1,7 @@
 const admin = require("../data/admin")
 const responses = require("../data/response")
 
-exports.nick = (msg, client, arg, responseList, isAdmin) => {
+function nick(msg, client, arg, responseList, isAdmin) {
   if (arg.length < 1) {
     msg.reply(responseList["NoArgument"])
     return
@@ -14,3 +14,4 @@ exports.nick = (msg, client, arg, responseList, isAdmin) => {
     msg.reply(responseList["Error"])
   })
 }
+exports.nick = nick
