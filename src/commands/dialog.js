@@ -16,3 +16,14 @@ function coinFlip(msg, client, arg, responseList) {
   msg.reply(result + " :sunglasses:")
 }
 exports.coinFlip = coinFlip
+
+function vaporwave(msg, client, arg, responseList) {
+  if (arg.length < 1) {
+    msg.reply(responseList["missing-argument"])
+    return
+  }
+
+  const vaporwave = arg.split('').join(' ')
+  msg.channel.send(vaporwave)
+}
+exports.vaporwave = vaporwave
