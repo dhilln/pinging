@@ -24,7 +24,8 @@ const commands = {
   "simon-says": new Command("Repeat what you say", commandModules.dialog.simonSays, true),
   "user-info": new Command("Return information on user or another user (must be admin to return others info)", commandModules.maintenance.userInfo, true),
   "coin-flip": new Command("Flip a coin", commandModules.dialog.coinFlip, false),
-  "olympics": new Command("Play the Olympics", commandModules.olympics.olympics, true)
+  "olympics": new Command("Play the Olympics", commandModules.olympics.olympics, true),
+  "vaporwave": new Command("v a p o r w a v e i s g o o d", commandModules.dialog.vaporwave, false)
 }
 exports.commands = commands
 
