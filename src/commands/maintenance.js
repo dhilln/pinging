@@ -3,19 +3,27 @@ const admin = require("../data/admin")
 const responses = require("../data/response")
 
 function help(msg, client, arg, responseList) {
-  const commands = Object.keys(message.commands).reduce((filtered, commandName) => {
-    const command = message.commands[commandName]
-    if (command.admin) {
-      if (!isAdmin) {
-        return filtered
+  admin.check(msg.author.id)
+  .then(isAdmin => {
+    const commands = Object.keys(message.commands).reduce((filtered, commandName) => {
+      const command = message.commands[commandName]
+      if (command.admin) {
+        if (!isAdmin) {
+          return filtered
+        }
       }
-    }
 
-    filtered.push(commandName + " - " + command.description + (command.admin ? " [ADMIN]" : ""))
-    return filtered
-  }, []).join("\n")
+      filtered.push(commandName + " - " + command.description + (command.admin ? " [ADMIN]" : ""))
+      return filtered
+    }, []).join("\n")
 
-  msg.reply("```" + commands + "```")
+    msg.reply("```" + commands + "```")
+  })
+  .catch(err => {
+    console.log(err)
+    process.exit(1)
+  })
+
 }
 exports.help = help
 
@@ -24,7 +32,10 @@ function ping(msg, client, arg, responseList) {
   .then(commandsList => {
     msg.reply(commandsList["ping"])
   })
-  .catch(() => {})
+  .catch(err => {
+    console.log(err)
+    process.exit(1)
+  })
 }
 exports.ping = ping
 

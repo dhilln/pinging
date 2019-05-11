@@ -23,7 +23,10 @@ function add(msg, client, arg, responseList) {
         else msg.reply("i added no one, i ran into an error :(")
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err)
+      process.exit(1)
+    })
   })
 }
 exports.add = add
