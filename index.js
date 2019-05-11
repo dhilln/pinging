@@ -5,6 +5,7 @@ const message = require("./src/message")
 const filter = require("./src/filter")
 const data = require("./src/data/core")
 const cli = require("./src/cli")
+const error = require("./src/error")
 
 var config = {}
 
@@ -17,6 +18,7 @@ data.readSetup()
 
   config = body
   client.login(body.token)
+  .catch(err => error.fatal("Error while trying to login using provided token, Discord API response", err))
 })
 .catch(err => {
   console.log(err)
@@ -33,8 +35,7 @@ client.on("ready", () => {
 })
 
 client.on("error", error => {
-  console.log("[ERROR] Discord.js client error, outputting to console...")
-  console.log(error)
+  error.nonfatal("Discord API returned non fatal error", error)
 })
 
 client.on("message", msg => {
@@ -44,11 +45,11 @@ client.on("message", msg => {
 
 // Event handlers for listing guilds
 client.on("guildCreate", guild => {
-  console.log(`[EVENT] Just joined ${guild.name}`)
+  console.log(`[PINGING EVENT] Just joined ${guild.name}`)
   cli.listGuilds(client)
 })
 client.on("guildDelete", guild => {
-  console.log(`[EVENT] Just left ${guild.name}`)
+  console.log(`[PINGING EVENT] Just left ${guild.name}`)
   cli.listGuilds(client)
 })
 client.on("guildUpdate", guild => cli.listGuilds(client))
