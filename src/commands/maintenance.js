@@ -24,7 +24,10 @@ function ping(msg, client, arg, responseList) {
   .then(commandsList => {
     msg.reply(commandsList["ping"])
   })
-  .catch(() => {})
+  .catch(err => {
+    console.log(err)
+    process.exit(1)
+  })
 }
 exports.ping = ping
 

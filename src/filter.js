@@ -9,10 +9,8 @@ const filters = {
 function handler(discordMessage, client) {
   const content = discordMessage.content
   responses.listWarnings()
-  .catch(() => {})
   .then(warningList => {
     configCore.readFilters()
-    .catch(() => {})
     .then(config => {
       const talkConfig = config.talking
 
@@ -65,6 +63,14 @@ function handler(discordMessage, client) {
         }
       }
     })
+    .catch(err => {
+      console.log(err)
+      process.exit(1)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    process.exit(1)
   })
 }
 exports.handler = handler
