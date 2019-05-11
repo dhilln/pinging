@@ -1,12 +1,12 @@
 const admin = require("../data/admin")
 
-function add(msg, client, arg, responseList, isAdmin) {
+function add(msg, client, arg, responseList) {
   const mentions = msg.mentions.users.map(item => {
     return item
   })
 
   if (mentions.length < 1) {
-    msg.reply(responseList["NoArgument"])
+    msg.reply(responseList["missing-argument"])
     return
   }
 

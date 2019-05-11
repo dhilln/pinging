@@ -1,9 +1,9 @@
 const admin = require("../data/admin")
 const responses = require("../data/response")
 
-function simonSays(msg, client, arg, responseList, isAdmin) {
+function simonSays(msg, client, arg, responseList) {
   if (arg.length < 1) {
-    msg.reply(responseList["NoArgument"])
+    msg.reply(responseList["missing-argument"])
     return
   }
 
@@ -11,7 +11,7 @@ function simonSays(msg, client, arg, responseList, isAdmin) {
 }
 exports.simonSays = simonSays
 
-function coinFlip(msg, client, arg, responseList, isAdmin) {
+function coinFlip(msg, client, arg, responseList) {
   const result = Math.random() > 0.5 ? "heads" : "tails"
   msg.reply(result + " :sunglasses:")
 }

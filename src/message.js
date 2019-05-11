@@ -28,9 +28,10 @@ const commands = {
 }
 exports.commands = commands
 
-responses.listMaintenance()
-.then(responseList => {
-  function handleCommand(msg, client) {
+
+function handleCommand(msg, client) {
+  responses.listMaintenance()
+  .then(responseList => {
     if (msg.content.slice(0, 1) == "*") {
       const commandText = msg.content.split(" ")[0].slice(1)
 
@@ -49,17 +50,17 @@ responses.listMaintenance()
           return
         }
 
-        command.func(msg, client, arg, responseList, isAdmin)
+        command.func(msg, client, arg, responseList)
       })
       .catch(err => {
         console.log(err)
         process.exit(1)
       })
     }
-  }
-  exports.handleCommand = handleCommand
-})
-.catch(err => {
-  console.log(err)
-  process.exit(1)
-})
+  })
+  .catch(err => {
+    console.log(err)
+    process.exit(1)
+  })
+}
+exports.handleCommand = handleCommand

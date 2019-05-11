@@ -1,7 +1,8 @@
 const message = require("../message")
 const admin = require("../data/admin")
+const responses = require("../data/response")
 
-function help(msg, client, arg, responseList, isAdmin) {
+function help(msg, client, arg, responseList) {
   const commands = Object.keys(message.commands).reduce((filtered, commandName) => {
     const command = message.commands[commandName]
     if (command.admin) {
@@ -18,12 +19,16 @@ function help(msg, client, arg, responseList, isAdmin) {
 }
 exports.help = help
 
-function ping(msg, client, arg, responseList, isAdmin) {
-  msg.reply(responseList["Ping"])
+function ping(msg, client, arg, responseList) {
+  responses.listCommands()
+  .then(commandsList => {
+    msg.reply(commandsList["ping"])
+  })
+  .catch(() => {})
 }
 exports.ping = ping
 
-function userInfo(msg, client, arg, responseList, isAdmin) {
+function userInfo(msg, client, arg, responseList) {
   const mentions = msg.mentions.users.map(item => {
     return item
   })
@@ -31,7 +36,7 @@ function userInfo(msg, client, arg, responseList, isAdmin) {
   if (mentions.length < 1) var user = msg.author
   else {
     if (!isAdmin) {
-      msg.reply(responseList["NotAdmin"])
+      msg.reply(responseList["not-admin"])
       return
     }
     var user = mentions[0]

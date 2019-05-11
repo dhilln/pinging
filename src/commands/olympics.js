@@ -1,4 +1,4 @@
-function olympics(message) {
+function olympics(message, client, arg, responseList) {
   message.channel.send("lets play the olympics... :smile: ")
   setTimeout(() => {
     message.channel.send("the first contestnat will be.......")
