@@ -3,13 +3,13 @@
     "delete": false,
     "warn": true
   },
-  "link": {
+  "discord-link": {
     "delete": false,
     "warn": true
   },
   "talking": {
-    "ban": true,
+    "ban": false,
     "delete": false,
-    "warn": true
+    "warn": false
   }
 }

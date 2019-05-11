@@ -36,7 +36,7 @@ function readPath(path) {
 }
 exports.readPath = readPath
 
-function writePath(body) {
+function writePath(path, body) {
   return new Promise((resolve, reject) => {
     try {
       JSON.parse(body)
@@ -45,7 +45,7 @@ function writePath(body) {
       return
     }
 
-    fs.writeFile(configPaths.setup, body, (err) => {
+    fs.writeFile(path, body, (err) => {
       if (err) {
         reject(err)
         return
