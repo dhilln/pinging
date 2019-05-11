@@ -1,15 +1,19 @@
 {
-  "Success": "of course master :sunglasses:",
-  "Error": "i got an error sorry master : (",
-  "NotAdmin": "you're not an admin",
-  "Ping": "pong :sunglasses:",
-  "NoArgument": "pls specify what u want : (",
-  "InvalidCommand": "huh invalid command given",
+  "maintenance": {
+    "success": "of course master :sunglasses:",
+    "error": "i got an error sorry master : (",
+    "not-admin": "you're not an admin",
+    "missing-argument": "pls specify what u want : (",
+    "invalid-command": "huh invalid command given"
+  },
+
+  "commands": {
+    "ping": "pong :sunglasses:"
+  },
 
   "warning": {
-    "Cussing": "don't cuss you jackass",
-    "Talking": "don't talk here",
-    "Links": "don't spam spam links u jackass"
+    "cussing": "don't cuss you jackass",
+    "talking": "don't talk here",
+    "discord-links": "don't spam spam links u jackass"
   }
-
 }

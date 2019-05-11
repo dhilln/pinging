@@ -8,7 +8,7 @@ const cli = require("./src/cli")
 
 var config = {}
 
-data.read("setup")
+data.readSetup()
 .then(body => {
   if (!body.token) {
     console.log("Invalid config.js, no token")

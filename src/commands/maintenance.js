@@ -1,7 +1,8 @@
 const message = require("../message")
 const admin = require("../data/admin")
+const responses = require("../data/response")
 
-exports.help = (msg, client, arg, responseList, isAdmin) => {
+function help(msg, client, arg, responseList) {
   const commands = Object.keys(message.commands).reduce((filtered, commandName) => {
     const command = message.commands[commandName]
     if (command.admin) {
@@ -16,12 +17,18 @@ exports.help = (msg, client, arg, responseList, isAdmin) => {
 
   msg.reply("```" + commands + "```")
 }
+exports.help = help
 
-exports.ping = (msg, client, arg, responseList, isAdmin) => {
-  msg.reply(responseList["Ping"])
+function ping(msg, client, arg, responseList) {
+  responses.listCommands()
+  .then(commandsList => {
+    msg.reply(commandsList["ping"])
+  })
+  .catch(() => {})
 }
+exports.ping = ping
 
-exports.userInfo = (msg, client, arg, responseList, isAdmin) => {
+function userInfo(msg, client, arg, responseList) {
   const mentions = msg.mentions.users.map(item => {
     return item
   })
@@ -29,7 +36,7 @@ exports.userInfo = (msg, client, arg, responseList, isAdmin) => {
   if (mentions.length < 1) var user = msg.author
   else {
     if (!isAdmin) {
-      msg.reply(responseList["NotAdmin"])
+      msg.reply(responseList["not-admin"])
       return
     }
     var user = mentions[0]
@@ -44,3 +51,4 @@ exports.userInfo = (msg, client, arg, responseList, isAdmin) => {
     process.exit(1)
   })
 }
+exports.userInfo = userInfo

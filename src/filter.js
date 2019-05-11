@@ -6,12 +6,12 @@ const filters = {
   link: require("./filters/link")
 }
 
-exports.handler = (discordMessage, client) => {
+function handler(discordMessage, client) {
   const content = discordMessage.content
-  responses.list()
+  responses.listWarnings()
   .catch(() => {})
-  .then(responseList => {
-    configCore.read("filters")
+  .then(warningList => {
+    configCore.readFilters()
     .catch(() => {})
     .then(config => {
       const talkConfig = config.talking
@@ -27,7 +27,7 @@ exports.handler = (discordMessage, client) => {
         }
 
         if (talkConfig.warn) {
-          discordMessage.channel.send(responseList.warning["Talking"])
+          discordMessage.channel.send(warningList.talking)
           .catch(() => {})
         }
 
@@ -38,7 +38,7 @@ exports.handler = (discordMessage, client) => {
       }
 
       if (filters.link.test(content)) {
-        const linkConfig = config.link
+        const linkConfig = config["discord-link"]
 
         if (linkConfig.delete) {
           discordMessage.delete()
@@ -46,7 +46,7 @@ exports.handler = (discordMessage, client) => {
         }
 
         if (linkConfig.warn) {
-          discordMessage.channel.send(responseList.warning["Links"])
+          discordMessage.channel.send(warningList["discord-links"])
           .catch(() => {})
         }
       }
@@ -60,11 +60,11 @@ exports.handler = (discordMessage, client) => {
         }
 
         if (cussingConfig.warn) {
-          discordMessage.channel.send(responseList.warning["Cussing"])
+          discordMessage.channel.send(warningList.cussing)
           .catch(() => {})
         }
       }
     })
   })
-
 }
+exports.handler = handler

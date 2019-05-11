@@ -1,8 +1,8 @@
 var configCore = require("./core")
 
-const list = () => {
+function list() {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.admins) {
         reject("Invalid config.js, no admin")
@@ -16,7 +16,7 @@ const list = () => {
 }
 exports.list = list
 
-exports.check = id => {
+function check(id) {
   return new Promise((resolve, reject) => {
     list()
     .then(adminList => {
@@ -25,10 +25,11 @@ exports.check = id => {
     .catch(reject)
   })
 }
+exports.check = check
 
-exports.add = id => {
+function add(id) {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.admins) {
         reject("Invalid config.js, no admin")
@@ -37,17 +38,18 @@ exports.add = id => {
 
       body.admins.push(id)
 
-      configCore.write(JSON.stringify(body))
+      configCore.writeSetup(JSON.stringify(body))
       .then(resolve)
       .catch(reject)
     })
     .catch(reject)
   })
 }
+exports.add = add
 
-exports.remove = id => {
+function remove(id) {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.admins) {
         reject("Invalid config.js, no admin")
@@ -69,3 +71,4 @@ exports.remove = id => {
     .catch(reject)
   })
 }
+exports.remove = remove

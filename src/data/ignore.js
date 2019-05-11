@@ -1,8 +1,8 @@
 var configCore = require("./core")
 
-const list = () => {
+function list() {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.ignoring) {
         reject("Invalid config.js, no ignoring")
@@ -16,9 +16,9 @@ const list = () => {
 }
 exports.list = list
 
-exports.add = id => {
+function add(id) {
   return new Promise((resolve, reject) => {
-    configCore.read("setup")
+    configCore.readSetup()
     .then(body => {
       if (!body.ignoring) {
         reject("Invalid config.js, no ignoring")
@@ -34,3 +34,4 @@ exports.add = id => {
     .catch(reject)
   })
 }
+exports.add = add
